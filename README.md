@@ -2,7 +2,7 @@ Custom scripts utilizing the numerous github scripts (BlueBrain/EFEL, HEKA_Impor
 
 
 
-# HEKAv2.mat File
+# HEKAv2.mat File --> Heka_to_Pyv2.py
 The HEKAv2.mat file is used in conjunction with the HEKA_to_Pyv2.py file.
 The import file is the .dat file output from the HEKA Patchmaster Next software.
 
