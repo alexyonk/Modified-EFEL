@@ -38,4 +38,4 @@ The ABF Importer can be found here: https://pypi.org/project/pyabf/
 
 1. Run the ABF_to_Py_efel.py script by selecting the appropriate .abf file
 
-2. The script will import, organize, analyze, and output two CSV files (Threshold_AP and AllAverages
+2. The script will import, organize, analyze, and output two CSV files (Threshold_AP and AllAverages)
