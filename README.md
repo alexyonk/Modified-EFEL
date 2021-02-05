@@ -32,10 +32,15 @@ The HEKA_Importer script can be found here: https://github.com/ChristianKeine/HE
 
 
 
-# ABF_to_Py_efel.py File
+# ABF_to_Py_efel.py File (Updated: 2/5/21 --> ABF_to_Py_efelv2.py)
 The ABF_to_Py_efel.py file utilizes an ABF import code along with the EFEL code to import, analyze, and export analytical parameters as CSVs.
 The ABF Importer can be found here: https://pypi.org/project/pyabf/
 
 1. Run the ABF_to_Py_efel.py script by selecting the appropriate .abf file
 
 2. The script will import, organize, analyze, and output two CSV files (Threshold_AP and AllAverages)
+**Note (2/5/21 Update): Fixed error when more peak_voltage/Spikecount/min_AHP_values are present than AP_begin_indices
+
+
+# efel_ABF_Test.py File
+This file can be used in conjunction with the ABF_to_Py_efel.py script to visualize traces through the matplotlib. Basic parameters can be assessed through this way (Spikecount, etc.)
