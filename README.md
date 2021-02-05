@@ -28,7 +28,7 @@ The HEKA_Importer script can be found here: https://github.com/ChristianKeine/HE
 
 8b. If you input all traces value (12) and the code ran successfully, the data will be stored in the appropriate variable (AllC#Traces) with an accompanying "All traces analyzed successfully!" for each trace analyzed.
 
-
+Example .dat file and .mat file have been provided.
 
 
 
@@ -41,6 +41,10 @@ The ABF Importer can be found here: https://pypi.org/project/pyabf/
 2. The script will import, organize, analyze, and output two CSV files (Threshold_AP and AllAverages)
 **Note (2/5/21 Update): Fixed error when more peak_voltage/Spikecount/min_AHP_values are present than AP_begin_indices
 
+Example .abf file has been provided.
+
 
 # efel_ABF_Test.py File
 This file can be used in conjunction with the ABF_to_Py_efel.py script to visualize traces through the matplotlib. Basic parameters can be assessed through this way (Spikecount, etc.)
+
+Example .abf file has been provided.
