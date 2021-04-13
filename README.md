@@ -31,6 +31,13 @@ The HEKA_Importer script can be found here: https://github.com/ChristianKeine/HE
 *** Example .dat file and .mat file have been provided.
 
 
+**NOTE: Most recent update (4/13/21) --> Frequency adaptation value was calculated wrong. Updated the appropriate code and added in analysis of up to 4 cells within a single file.
+
+
+
+
+
+
 
 # ABF_to_Py_efel.py File (Updated: 2/5/21 --> ABF_to_Py_efelv2.py)
 The ABF_to_Py_efel.py file utilizes an ABF import code along with the EFEL code to import, analyze, and export analytical parameters as CSVs.
