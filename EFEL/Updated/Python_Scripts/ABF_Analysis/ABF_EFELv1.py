@@ -1,6 +1,6 @@
 #                    EFEL for ABF Formatted Files
 #                   *Created by AY on 12/28/2020*
-#                   *Last Updated on 5/19/2021*
+#                   *Last Updated on 5/24/2021*
 #     *For any issues or bugs, please contact alex.yonk2@gmail.com*
 
 
@@ -8,6 +8,7 @@
 import efel
 import numpy as np
 import pyabf
+from matplotlib import pyplot as plt
 from csv import DictWriter
 from tkinter import filedialog
 
@@ -63,7 +64,7 @@ for i in SortedData[IterVar:TraceNum:1]:
     
     #If Spikecount is equal to 0, append a 0 to AllAverages variable, and move onto next trace
     if traces_results[0]['Spikecount'] == 0:
-        print('No spikes in trace ' + str(IterVar))
+        print('No spikes in trace ' + str(IterVar) + '.')
         AllAverages.append(0)
         IterVar += 1
         continue
@@ -86,12 +87,8 @@ for i in SortedData[IterVar:TraceNum:1]:
     traces_results = efel.getFeatureValues(traces,[
                                             'AP_begin_voltage','voltage_base','AP_amplitude','AP_rise_time',
                                             'Spikecount','min_AHP_values','AP_begin_indices','peak_time',
-                                            'ISI_values','spike_width2','peak_voltage','peak_indices','AP_rise_time'])
-
-    #Calculate initial ISI value and insert this value into the 0 position of ISI values
-    FirstISI = traces_results[0]['peak_time'][1] - traces_results[0]['peak_time'][0]
-    trace_results['ISI_values'] = np.insert(traces_results[0]['ISI_values'],0,FirstISI)
-    
+                                            'spike_width2','peak_voltage','peak_indices','AP_rise_time'])
+        
     #Another error comes about if more AHP or threshold AP values are detected
     #This code automatically removes the problematic errors and makes the number of values equal for further calculations
     if len(traces_results[0]['min_AHP_values']) != len(traces_results[0]['AP_begin_voltage']):
@@ -116,6 +113,12 @@ for i in SortedData[IterVar:TraceNum:1]:
                             'AP_Half-Height_Width': float(traces_results[0]['spike_width2'][0]),
                             'AHP_Amplitude': trace_results['AHP'][0]}
 
+    #Calculate ISI values based on AP_begin_indices and multiply each value by the sampling point (0.05ms)
+    if traces_results[0]['Spikecount'] == 2:
+        traces_results[0]['ISI_values'] = float(traces_results[0]['AP_begin_indices'][-1] - traces_results[0]['AP_begin_indices'][0]) * 0.05
+    elif traces_results[0]['Spikecount'] > 2:    
+        traces_results[0]['ISI_values'] = np.diff(traces_results[0]['AP_begin_indices']) * 0.05
+            
     #Calculate AHP amplitude values
     trace_results['AHP'] = traces_results[0]['min_AHP_values'] - traces_results[0]['AP_begin_voltage']
     
@@ -123,11 +126,17 @@ for i in SortedData[IterVar:TraceNum:1]:
     trace_results['SpikeDur'] = Time[traces_results[0]['AP_begin_indices'][-1]] - Time[traces_results[0]['AP_begin_indices'][0]]
                 
     #Calculate Frequency Parameters (Mean Instantaneous, Max, and Frequency Adaptation)
-    Frequency = 1/trace_results['ISI_values']
+    #If there is only one frequency value, calculate MaxFreq and FreqAdapt is not applicable
+    #If there is more than one frequency value, calculate both parameters appropriately
+    #ISI values are calculated from AP_begin_indices(i+1) - AP_begin_indices(i) as opposed to the peaks
+    Frequency = 1/traces_results[0]['ISI_values']
     trace_results['MeanInstFreq'] = np.mean(Frequency)*1000
-    trace_results['MaxFreq'] = max(Frequency)*1000
-    trace_results['FreqAdapt'] = Frequency[-1] / Frequency[0]
-    
+    if np.size(traces_results[0]['ISI_values']) == 1:   
+        trace_results['MaxFreq'] = Frequency * 1000
+        trace_results['FreqAdapt'] = 'N/A'
+    elif np.size(traces_results[0]['ISI_values']) > 1:
+        trace_results['MaxFreq'] = max(Frequency) * 1000
+        trace_results['FreqAdapt'] = (Frequency[-1] / Frequency[0])
     #Calculate Threshold Adaptation Frequency
     trace_results['Thresh_Adapt_Freq'] = traces_results[0]['AP_begin_voltage'][-1] / traces_results[0]['AP_begin_voltage'][0]
     
@@ -150,8 +159,8 @@ for i in SortedData[IterVar:TraceNum:1]:
     if IterVar == StartingColumn and SpikeCount == 1:
         AP_Latency = Time[traces_results[0]['AP_begin_indices'][0]] - 256.3
         Threshold_AP = {'AP_Latency': AP_Latency, 'AP_Threshold': traces_results[0]['AP_begin_voltage'][0],
-                        'AP_Amplitude': traces_results[0]['AP_Amplitude'][0],'AP_Rise': 
-                        traces_results[0]['AP_rise_time'][0],'AP_Half-Height_Width':traces_results[0]['spike_width2'][0],
+                        'AP_Amplitude': traces_results[0]['AP_Amplitude'][0],'AP_Rise': traces_results[0]['AP_rise_time'][0],
+                        'AP_Half-Height_Width':traces_results[0]['spike_width2'][0],
                         'AHP_Amplitude': trace_results['AHP'][0]}
             
     if IterVar == StartingColumn and SpikeCount == 0:
@@ -168,12 +177,17 @@ for i in SortedData[IterVar:TraceNum:1]:
             'Peak_Adaptation': trace_results['PeakAdapt'], 'Mean_AHP_Amplitude': trace_results['MeanAHPAmp'],
             'AHP_Adaptation': trace_results['AHPAdapt'], 'Thresh_Adapt_Freq': trace_results['Thresh_Adapt_Freq']}
     
+    #Graph to plot related information
+    plt.plot(Time,SortedData[:,IterVar])
+    plt.show()
+
+    #Append all pertinent information into a list to be written into a CSV
     First_Threshold_AP.append(First_AP)
     AllAverages.append(averages)
     
     IterVar += 1
     
-#Two CSV output files for averaged trace data and Threshold_AP data
+#Two CSV output files for averaged trace data and First_Threshold_AP data
 with open(str(file) + '_FirstAP' + '.csv','w') as tAP, open(str(file) + '_Averages' + '.csv','w') as Avg:
     writer1 = DictWriter(tAP,('AP_Latency','AP_Threshold','AP_Amplitude','AP_Rise','AP_Half-Height_Width','AHP_Amplitude'))
     writer1.writeheader()
