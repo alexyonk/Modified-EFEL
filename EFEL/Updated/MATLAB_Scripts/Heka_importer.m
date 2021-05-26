@@ -20,10 +20,10 @@ Data.CellNum = max(all.RecTable{:,1});
 timerow = 2;
 Time(1,1) = 0;
 
-freq = (1/20000)*1000; %This value must be set as the sampling frequency
-for i = 1:120049
-    Time(timerow,1) = 0 + freq;
-    freq = freq + 0.05;
+SF = (1/all.RecTable{1,19})*1000; %This value must be set as the sampling frequency (20kHz)
+for i = 1:99999
+    Time(timerow,1) = 0 + SF;
+    SF = SF + 0.05;
     timerow = timerow + 1;
 end
 
@@ -126,6 +126,31 @@ if Data.CellNum == 1
             Data.Cell1.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell1.ExptID10 = char(all.RecTable{i,10});
             Data.Cell1.Exp10 = Data.Cell1.Exp10 * 1000;
+        elseif i == 11
+            Data.Cell1.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell1.Exp11 = Data.Cell1.Exp11 * 1000;
+        elseif i == 12
+            Data.Cell1.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell1.Exp12 = Data.Cell1.Exp12 * 1000;
+        elseif i == 13
+            Data.Cell1.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell1.Exp13 = Data.Cell1.Exp13 * 1000;
+        elseif i == 14
+            Data.Cell1.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell1.Exp14 = Data.Cell1.Exp14 * 1000;
+        elseif i == 15
+            Data.Cell1.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell1.Exp15 = Data.Cell1.Exp15 * 1000;
         end
     end
 elseif Data.CellNum == 2
@@ -180,6 +205,31 @@ elseif Data.CellNum == 2
             Data.Cell1.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell1.ExptID10 = char(all.RecTable{i,10});
             Data.Cell1.Exp10 = Data.Cell1.Exp10 * 1000;
+        elseif i == 11
+            Data.Cell1.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell1.Exp11 = Data.Cell1.Exp11 * 1000;
+        elseif i == 12
+            Data.Cell1.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell1.Exp12 = Data.Cell1.Exp12 * 1000;
+        elseif i == 13
+            Data.Cell1.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell1.Exp13 = Data.Cell1.Exp13 * 1000;
+        elseif i == 14
+            Data.Cell1.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell1.Exp14 = Data.Cell1.Exp14 * 1000;
+        elseif i == 15
+            Data.Cell1.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell1.Exp15 = Data.Cell1.Exp15 * 1000;
         end
     end
     for i = Data.Cell1.Expts:(Data.Cell1.Expts + Data.Cell2.Expts)
@@ -232,7 +282,32 @@ elseif Data.CellNum == 2
             Data.Cell2.Exp10 = cell2mat(all.RecTable.dataRaw{i,1});
             Data.Cell2.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell2.ExptID10 = char(all.RecTable{i,10});
-            Data.Cell2.Exp1 = Data.Cell2.Exp1 * 1000;
+            Data.Cell2.Exp10 = Data.Cell2.Exp10 * 1000;
+        elseif i == Data.Cell1.Expts + 11
+            Data.Cell2.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell2.Exp11 = Data.Cell2.Exp11 * 1000;
+        elseif i == Data.Cell1.Expts + 12
+            Data.Cell2.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell2.Exp12 = Data.Cell2.Exp12 * 1000;
+        elseif i == Data.Cell1.Expts + 13
+            Data.Cell2.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell2.Exp13 = Data.Cell2.Exp13 * 1000;
+        elseif i == Data.Cell1.Expts + 14
+            Data.Cell2.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell2.Exp14 = Data.Cell2.Exp14 * 1000;
+        elseif i == Data.Cell1.Expts + 15
+            Data.Cell2.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell2.Exp15 = Data.Cell2.Exp15 * 1000;
         end
     end
 elseif Data.CellNum == 3
@@ -287,6 +362,31 @@ elseif Data.CellNum == 3
             Data.Cell1.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell1.ExptID10 = char(all.RecTable{i,10});
             Data.Cell1.Exp10 = Data.Cell1.Exp10 * 1000;
+        elseif i == 11
+            Data.Cell1.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell1.Exp11 = Data.Cell1.Exp11 * 1000;
+        elseif i == 12
+            Data.Cell1.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell1.Exp12 = Data.Cell1.Exp12 * 1000;
+        elseif i == 13
+            Data.Cell1.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell1.Exp13 = Data.Cell1.Exp13 * 1000;
+        elseif i == 14
+            Data.Cell1.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell1.Exp14 = Data.Cell1.Exp14 * 1000;
+        elseif i == 15
+            Data.Cell1.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell1.Exp15 = Data.Cell1.Exp15 * 1000;
         end
     end
     for i = Data.Cell1.Expts:(Data.Cell1.Expts + Data.Cell2.Expts)
@@ -339,7 +439,32 @@ elseif Data.CellNum == 3
             Data.Cell2.Exp10 = cell2mat(all.RecTable.dataRaw{i,1});
             Data.Cell2.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell2.ExptID10 = char(all.RecTable{i,10});
-            Data.Cell2.Exp1 = Data.Cell2.Exp1 * 1000;
+            Data.Cell2.Exp10 = Data.Cell2.Exp10 * 1000;
+        elseif i == Data.Cell1.Expts + 11
+            Data.Cell2.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell2.Exp11 = Data.Cell2.Exp11 * 1000;
+        elseif i == Data.Cell1.Expts + 12
+            Data.Cell2.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell2.Exp12 = Data.Cell2.Exp12 * 1000;
+        elseif i == Data.Cell1.Expts + 13
+            Data.Cell2.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell2.Exp13 = Data.Cell2.Exp13 * 1000;
+        elseif i == Data.Cell1.Expts + 14
+            Data.Cell2.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell2.Exp14 = Data.Cell2.Exp14 * 1000;
+        elseif i == Data.Cell1.Expts + 15
+            Data.Cell2.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell2.Exp15 = Data.Cell2.Exp15 * 1000;
         end
     end
     for i = (Data.Cell1.Expts + Data.Cell2.Expts):(Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts)
@@ -393,6 +518,31 @@ elseif Data.CellNum == 3
             Data.Cell3.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell3.ExptID10 = char(all.RecTable{i,10});
             Data.Cell3.Exp10 = Data.Cell3.Exp10 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 11
+            Data.Cell3.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell3.Exp11 = Data.Cell3.Exp11 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 12
+            Data.Cell3.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell3.Exp12 = Data.Cell3.Exp12 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 13
+            Data.Cell3.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell3.Exp13 = Data.Cell3.Exp13 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 14
+            Data.Cell3.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell3.Exp14 = Data.Cell3.Exp14 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 15
+            Data.Cell3.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell3.Exp15 = Data.Cell3.Exp15 * 1000;
         end
     end
 elseif Data.CellNum == 4
@@ -447,6 +597,31 @@ elseif Data.CellNum == 4
             Data.Cell1.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell1.ExptID10 = char(all.RecTable{i,10});
             Data.Cell1.Exp10 = Data.Cell1.Exp10 * 1000;
+        elseif i == 11
+            Data.Cell1.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell1.Exp11 = Data.Cell1.Exp11 * 1000;
+        elseif i == 12
+            Data.Cell1.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell1.Exp12 = Data.Cell1.Exp12 * 1000;
+        elseif i == 13
+            Data.Cell1.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell1.Exp13 = Data.Cell1.Exp13 * 1000;
+        elseif i == 14
+            Data.Cell1.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell1.Exp14 = Data.Cell1.Exp14 * 1000;
+        elseif i == 15
+            Data.Cell1.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell1.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell1.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell1.Exp15 = Data.Cell1.Exp15 * 1000;
         end
     end
     for i = Data.Cell1.Expts:(Data.Cell1.Expts + Data.Cell2.Expts)
@@ -499,7 +674,32 @@ elseif Data.CellNum == 4
             Data.Cell2.Exp10 = cell2mat(all.RecTable.dataRaw{i,1});
             Data.Cell2.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell2.ExptID10 = char(all.RecTable{i,10});
-            Data.Cell2.Exp1 = Data.Cell2.Exp1 * 1000;
+            Data.Cell2.Exp10 = Data.Cell2.Exp10 * 1000;
+        elseif i == Data.Cell1.Expts + 11
+            Data.Cell2.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell2.Exp11 = Data.Cell2.Exp11 * 1000;
+        elseif i == Data.Cell1.Expts + 12
+            Data.Cell2.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell2.Exp12 = Data.Cell2.Exp12 * 1000;
+        elseif i == Data.Cell1.Expts + 13
+            Data.Cell2.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell2.Exp13 = Data.Cell2.Exp13 * 1000;
+        elseif i == Data.Cell1.Expts + 14
+            Data.Cell2.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell2.Exp14 = Data.Cell2.Exp14 * 1000;
+        elseif i == Data.Cell1.Expts + 15
+            Data.Cell2.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell2.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell2.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell2.Exp15 = Data.Cell2.Exp15 * 1000;
         end
     end
     for i = (Data.Cell1.Expts + Data.Cell2.Expts):(Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts)
@@ -553,6 +753,31 @@ elseif Data.CellNum == 4
             Data.Cell3.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell3.ExptID10 = char(all.RecTable{i,10});
             Data.Cell3.Exp10 = Data.Cell3.Exp10 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 11
+            Data.Cell3.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell3.Exp11 = Data.Cell3.Exp11 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 12
+            Data.Cell3.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell3.Exp12 = Data.Cell3.Exp12 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 13
+            Data.Cell3.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell3.Exp13 = Data.Cell3.Exp13 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 14
+            Data.Cell3.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell3.Exp14 = Data.Cell3.Exp14 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + 15
+            Data.Cell3.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell3.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell3.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell3.Exp15 = Data.Cell3.Exp15 * 1000;
         end
     end
     for i = (Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts):(Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts + Data.Cell4.Expts)
@@ -606,6 +831,31 @@ elseif Data.CellNum == 4
             Data.Cell4.Stim10 = all.RecTable.stimWave{i,1}.DA_3;
             Data.Cell4.ExptID10 = char(all.RecTable{i,10});
             Data.Cell4.Exp10 = Data.Cell4.Exp10 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts + 11
+            Data.Cell4.Exp11 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell4.Stim11 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell4.ExptID11 = char(all.RecTable{i,10});
+            Data.Cell4.Exp11 = Data.Cell4.Exp11 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts + 12
+            Data.Cell4.Exp12 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell4.Stim12 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell4.ExptID12 = char(all.RecTable{i,10});
+            Data.Cell4.Exp12 = Data.Cell4.Exp12 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts + 13
+            Data.Cell4.Exp13 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell4.Stim13 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell4.ExptID13 = char(all.RecTable{i,10});
+            Data.Cell4.Exp13 = Data.Cell4.Exp13 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts + 14
+            Data.Cell4.Exp14 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell4.Stim14 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell4.ExptID14 = char(all.RecTable{i,10});
+            Data.Cell4.Exp14 = Data.Cell4.Exp14 * 1000;
+        elseif i == Data.Cell1.Expts + Data.Cell2.Expts + Data.Cell3.Expts + 15
+            Data.Cell4.Exp15 = cell2mat(all.RecTable.dataRaw{i,1});
+            Data.Cell4.Stim15 = all.RecTable.stimWave{i,1}.DA_3;
+            Data.Cell4.ExptID15 = char(all.RecTable{i,10});
+            Data.Cell4.Exp15 = Data.Cell4.Exp15 * 1000;
         end
     end
 end
