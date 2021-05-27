@@ -1,6 +1,6 @@
 #                   EFEL for HEKA DAT Files v3.0
 #                   *Created by AY on 5/10/2021*
-#                   *Last Updated on 5/19/2021*
+#                   *Last Updated on 5/27/2021*
 #     *For any issues or bugs, please contact alex.yonk2@gmail.com*
 #*This script was designed to analyze electrophysiological parameters from HEKA .dat files converted into mat files
 #*Files will be selectively plot and analyze as either PSP or IV based on the experiment ID
@@ -1132,17 +1132,23 @@ if 'Raw' in Data:
         if traces_results[0]['Spikecount'] >= 2:
             traces_results = efel.getFeatureValues(traces,[
                 'AP_begin_voltage','voltage_base','AP_amplitude','AP_rise_time',
-                'Spikecount','min_AHP_values','AP_begin_indices','peak_time', 'ISI_values',
-                'spike_width2','voltage_base'])
+                'Spikecount','min_AHP_values','AP_begin_indices','peak_time','spike_width2',
+                'voltage_base'])
 
             #Error if operands of AP_begin_voltage and min_AHP_values are not equal
-            #This code automatically removes the erroneous values and makes the number of values equal for further calculations
+            #This code automatically removes the erroneous values (usually the last value(s)) and makes the number of values equal for further calculations
             if len(traces_results[0]['min_AHP_values']) != len(traces_results[0]['AP_begin_voltage']):
                 if len(traces_results[0]['min_AHP_values']) > len(traces_results[0]['AP_begin_voltage']):
                     traces_results[0]['min_AHP_values'] = np.delete(traces_results[0]['min_AHP_values'],-1)
                 elif len(traces_results[0]['AP_begin_voltage']) > len(traces_results[0]['min_AHP_values']):
                     traces_results[0]['AP_begin_voltage'] = np.delete(traces_results[0]['AP_begin_voltage'],-1)
                     traces_results[0]['AP_begin_indices'] = np.delete(traces_results[0]['AP_begin_indices'],-1)
+    
+            #Calculate ISI values based on AP_begin_indices and multiply each value by the sampling point (0.05ms)
+            if traces_results[0]['Spikecount'] == 2:
+                traces_results[0]['ISI_values'] = float(traces_results[0]['AP_begin_indices'][-1] - traces_results[0]['AP_begin_indices'][0]) * 0.05
+            elif traces_results[0]['Spikecount'] > 2:    
+                traces_results[0]['ISI_values'] = np.diff(traces_results[0]['AP_begin_indices']) * 0.05    
     
             #Calculate initial ISI value and insert this value into the 0 position of ISI values
             FirstISI = traces_results[0]['peak_time'][1] - traces_results[0]['peak_time'][0]

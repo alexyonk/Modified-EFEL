@@ -1,6 +1,6 @@
 #              POm-related EFEL for HEKA DAT Files v3.0
 #                   *Created by AY on 5/26/2021*
-#                   *Last Updated on 5/26/2021*
+#                   *Last Updated on 5/27/2021*
 #     *For any issues or bugs, please contact alex.yonk2@gmail.com*
 #*This script was designed to analyze electrophysiological parameters from HEKA .dat files converted into mat files
 #*Can handle up to 15 experiments within a cell
@@ -1083,845 +1083,1446 @@ if User_choices['CellVal'] == 1:
         Data['Raw'] = mat['Data'].Cell1.Exp1
         Data['Stim'] = mat['Data'].Cell1.Stim1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID1 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID1 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID1 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID1 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp1
+        Data['Stim'] = mat['Data'].Cell1.Stim1
+        Data['TraceMax'] = cols1
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID1 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp1
+        Data['Stim'] = mat['Data'].Cell1.Stim1
+        Data['TraceMax'] = cols1
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 2 and mat['Data'].Cell1.ExptID2 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp2
         Data['Stim'] = mat['Data'].Cell1.Stim2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 2 and mat['Data'].Cell1.ExptID2 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 2 and mat['Data'].Cell1.ExptID2 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 2 and mat['Data'].Cell1.ExptID2 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID2 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp2
+        Data['Stim'] = mat['Data'].Cell1.Stim2
+        Data['TraceMax'] = cols2
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID2 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp2
+        Data['Stim'] = mat['Data'].Cell1.Stim2
+        Data['TraceMax'] = cols2
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 3 and mat['Data'].Cell1.ExptID3 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp3
         Data['Stim'] = mat['Data'].Cell1.Stim3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 3 and mat['Data'].Cell1.ExptID3 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 3 and mat['Data'].Cell1.ExptID3 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 3 and mat['Data'].Cell1.ExptID3 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID3 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp3
+        Data['Stim'] = mat['Data'].Cell1.Stim3
+        Data['TraceMax'] = cols3
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID3 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp3
+        Data['Stim'] = mat['Data'].Cell1.Stim3
+        Data['TraceMax'] = cols3
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 4 and mat['Data'].Cell1.ExptID4 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp4
         Data['Stim'] = mat['Data'].Cell1.Stim4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 4 and mat['Data'].Cell1.ExptID4 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 4 and mat['Data'].Cell1.ExptID4 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 4 and mat['Data'].Cell1.ExptID4 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID4 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp4
+        Data['Stim'] = mat['Data'].Cell1.Stim4
+        Data['TraceMax'] = cols4
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID4 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp4
+        Data['Stim'] = mat['Data'].Cell1.Stim4
+        Data['TraceMax'] = cols4
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 5 and mat['Data'].Cell1.ExptID5 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp5
         Data['Stim'] = mat['Data'].Cell1.Stim5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 5 and mat['Data'].Cell1.ExptID5 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 5 and mat['Data'].Cell1.ExptID5 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 5 and mat['Data'].Cell1.ExptID5 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID5 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp5
+        Data['Stim'] = mat['Data'].Cell1.Stim5
+        Data['TraceMax'] = cols5
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID5 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp5
+        Data['Stim'] = mat['Data'].Cell1.Stim5
+        Data['TraceMax'] = cols5
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]        
         
     if User_choices['ExptVal'] == 6 and mat['Data'].Cell1.ExptID6 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp6
         Data['Stim'] = mat['Data'].Cell1.Stim6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 6 and mat['Data'].Cell1.ExptID6 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 6 and mat['Data'].Cell1.ExptID6 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 6 and mat['Data'].Cell1.ExptID6 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID6 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp6
+        Data['Stim'] = mat['Data'].Cell1.Stim6
+        Data['TraceMax'] = cols6
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID6 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp6
+        Data['Stim'] = mat['Data'].Cell1.Stim6
+        Data['TraceMax'] = cols6
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]        
         
     if User_choices['ExptVal'] == 7 and mat['Data'].Cell1.ExptID7 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp7
         Data['Stim'] = mat['Data'].Cell1.Stim7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 7 and mat['Data'].Cell1.ExptID7 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 7 and mat['Data'].Cell1.ExptID7 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 7 and mat['Data'].Cell1.ExptID7 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID7 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp7
+        Data['Stim'] = mat['Data'].Cell1.Stim7
+        Data['TraceMax'] = cols7
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID7 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp7
+        Data['Stim'] = mat['Data'].Cell1.Stim7
+        Data['TraceMax'] = cols7
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 8 and mat['Data'].Cell1.ExptID8 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp8
         Data['Stim'] = mat['Data'].Cell1.Stim8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 8 and mat['Data'].Cell1.ExptID8 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 8 and mat['Data'].Cell1.ExptID8 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 8 and mat['Data'].Cell1.ExptID8 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID8 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp8
+        Data['Stim'] = mat['Data'].Cell1.Stim8
+        Data['TraceMax'] = cols8
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID8 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp8
+        Data['Stim'] = mat['Data'].Cell1.Stim8
+        Data['TraceMax'] = cols8
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 9 and mat['Data'].Cell1.ExptID9 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp9
         Data['Stim'] = mat['Data'].Cell1.Stim9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 9 and mat['Data'].Cell1.ExptID9 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 9 and mat['Data'].Cell1.ExptID9 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 9 and mat['Data'].Cell1.ExptID9 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID9 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp9
+        Data['Stim'] = mat['Data'].Cell1.Stim9
+        Data['TraceMax'] = cols9
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID9 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp9
+        Data['Stim'] = mat['Data'].Cell1.Stim9
+        Data['TraceMax'] = cols9
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 10 and mat['Data'].Cell1.ExptID10 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp10
         Data['Stim'] = mat['Data'].Cell1.Stim10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 10 and mat['Data'].Cell1.ExptID10 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 10 and mat['Data'].Cell1.ExptID10 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 10 and mat['Data'].Cell1.ExptID10 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID10 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp10
+        Data['Stim'] = mat['Data'].Cell1.Stim10
+        Data['TraceMax'] = cols10
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID10 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp10
+        Data['Stim'] = mat['Data'].Cell1.Stim10
+        Data['TraceMax'] = cols10
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 11 and mat['Data'].Cell1.ExptID10 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp11
         Data['Stim'] = mat['Data'].Cell1.Stim11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 11 and mat['Data'].Cell1.ExptID11 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 11 and mat['Data'].Cell1.ExptID11 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 11 and mat['Data'].Cell1.ExptID11 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID11 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp11
+        Data['Stim'] = mat['Data'].Cell1.Stim11
+        Data['TraceMax'] = cols11
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID11 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp11
+        Data['Stim'] = mat['Data'].Cell1.Stim11
+        Data['TraceMax'] = cols11
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 12 and mat['Data'].Cell1.ExptID12 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp12
         Data['Stim'] = mat['Data'].Cell1.Stim12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 12 and mat['Data'].Cell1.ExptID12 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 12 and mat['Data'].Cell1.ExptID12 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 12 and mat['Data'].Cell1.ExptID12 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID12 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp12
+        Data['Stim'] = mat['Data'].Cell1.Stim12
+        Data['TraceMax'] = cols12
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID12 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp12
+        Data['Stim'] = mat['Data'].Cell1.Stim12
+        Data['TraceMax'] = cols12
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 13 and mat['Data'].Cell1.ExptID13 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp13
         Data['Stim'] = mat['Data'].Cell1.Stim13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 13 and mat['Data'].Cell1.ExptID13 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 13 and mat['Data'].Cell1.ExptID13 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 13 and mat['Data'].Cell1.ExptID13 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID13 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp13
+        Data['Stim'] = mat['Data'].Cell1.Stim13
+        Data['TraceMax'] = cols13
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID13 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp13
+        Data['Stim'] = mat['Data'].Cell1.Stim13
+        Data['TraceMax'] = cols13
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 14 and mat['Data'].Cell1.ExptID14 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp14
         Data['Stim'] = mat['Data'].Cell1.Stim14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 14 and mat['Data'].Cell1.ExptID14 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 14 and mat['Data'].Cell1.ExptID14 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 14 and mat['Data'].Cell1.ExptID14 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID14 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp14
+        Data['Stim'] = mat['Data'].Cell1.Stim14
+        Data['TraceMax'] = cols14
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID14 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp14
+        Data['Stim'] = mat['Data'].Cell1.Stim14
+        Data['TraceMax'] = cols14
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 15 and mat['Data'].Cell1.ExptID15 == 'IV':
         Data['Raw'] = mat['Data'].Cell1.Exp15
         Data['Stim'] = mat['Data'].Cell1.Stim15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 15 and mat['Data'].Cell1.ExptID15 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 15 and mat['Data'].Cell1.ExptID15 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell1.Exp15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 15 and mat['Data'].Cell1.ExptID15 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell1.Exp15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID15 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell1.Exp15
+        Data['Stim'] = mat['Data'].Cell1.Stim15
+        Data['TraceMax'] = cols15
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell1.ExptID15 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell1.Exp15
+        Data['Stim'] = mat['Data'].Cell1.Stim15
+        Data['TraceMax'] = cols15
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
 if User_choices['CellVal'] == 2:
     if User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID1 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp1
         Data['Stim'] = mat['Data'].Cell2.Stim1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID1 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID1 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID1 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID1 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp1
+        Data['Stim'] = mat['Data'].Cell2.Stim1
+        Data['TraceMax'] = cols1
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID1 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp1
+        Data['Stim'] = mat['Data'].Cell2.Stim1
+        Data['TraceMax'] = cols1
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 2 and mat['Data'].Cell2.ExptID2 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp2
         Data['Stim'] = mat['Data'].Cell2.Stim2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 2 and mat['Data'].Cell2.ExptID2 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 2 and mat['Data'].Cell2.ExptID2 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 2 and mat['Data'].Cell2.ExptID2 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID2 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp2
+        Data['Stim'] = mat['Data'].Cell2.Stim2
+        Data['TraceMax'] = cols2
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID2 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp2
+        Data['Stim'] = mat['Data'].Cell2.Stim2
+        Data['TraceMax'] = cols2
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 3 and mat['Data'].Cell2.ExptID3 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp3
         Data['Stim'] = mat['Data'].Cell2.Stim3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 3 and mat['Data'].Cell2.ExptID3 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 3 and mat['Data'].Cell2.ExptID3 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 3 and mat['Data'].Cell2.ExptID3 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID3 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp3
+        Data['Stim'] = mat['Data'].Cell2.Stim3
+        Data['TraceMax'] = cols3
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID3 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp3
+        Data['Stim'] = mat['Data'].Cell2.Stim3
+        Data['TraceMax'] = cols3
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 4 and mat['Data'].Cell2.ExptID4 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp4
         Data['Stim'] = mat['Data'].Cell2.Stim4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 4 and mat['Data'].Cell2.ExptID4 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 4 and mat['Data'].Cell2.ExptID4 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 4 and mat['Data'].Cell2.ExptID4 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID4 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp4
+        Data['Stim'] = mat['Data'].Cell2.Stim4
+        Data['TraceMax'] = cols4
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID4 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp4
+        Data['Stim'] = mat['Data'].Cell2.Stim4
+        Data['TraceMax'] = cols4
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 5 and mat['Data'].Cell2.ExptID5 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp5
         Data['Stim'] = mat['Data'].Cell2.Stim5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 5 and mat['Data'].Cell2.ExptID5 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 5 and mat['Data'].Cell2.ExptID5 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 5 and mat['Data'].Cell2.ExptID5 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID5 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp5
+        Data['Stim'] = mat['Data'].Cell2.Stim5
+        Data['TraceMax'] = cols5
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID5 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp5
+        Data['Stim'] = mat['Data'].Cell2.Stim5
+        Data['TraceMax'] = cols5
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]        
         
     if User_choices['ExptVal'] == 6 and mat['Data'].Cell2.ExptID6 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp6
         Data['Stim'] = mat['Data'].Cell2.Stim6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 6 and mat['Data'].Cell2.ExptID6 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 6 and mat['Data'].Cell2.ExptID6 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 6 and mat['Data'].Cell2.ExptID6 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID6 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp6
+        Data['Stim'] = mat['Data'].Cell2.Stim6
+        Data['TraceMax'] = cols6
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID6 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp6
+        Data['Stim'] = mat['Data'].Cell2.Stim6
+        Data['TraceMax'] = cols6
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]        
         
     if User_choices['ExptVal'] == 7 and mat['Data'].Cell2.ExptID7 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp7
         Data['Stim'] = mat['Data'].Cell2.Stim7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 7 and mat['Data'].Cell2.ExptID7 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 7 and mat['Data'].Cell2.ExptID7 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 7 and mat['Data'].Cell2.ExptID7 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID7 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp7
+        Data['Stim'] = mat['Data'].Cell2.Stim7
+        Data['TraceMax'] = cols7
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID7 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp7
+        Data['Stim'] = mat['Data'].Cell2.Stim7
+        Data['TraceMax'] = cols7
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 8 and mat['Data'].Cell2.ExptID8 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp8
         Data['Stim'] = mat['Data'].Cell2.Stim8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 8 and mat['Data'].Cell2.ExptID8 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 8 and mat['Data'].Cell2.ExptID8 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 8 and mat['Data'].Cell2.ExptID8 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID8 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp8
+        Data['Stim'] = mat['Data'].Cell2.Stim8
+        Data['TraceMax'] = cols8
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID8 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp8
+        Data['Stim'] = mat['Data'].Cell2.Stim8
+        Data['TraceMax'] = cols8
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 9 and mat['Data'].Cell2.ExptID9 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp9
         Data['Stim'] = mat['Data'].Cell2.Stim9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 9 and mat['Data'].Cell2.ExptID9 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 9 and mat['Data'].Cell2.ExptID9 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 9 and mat['Data'].Cell2.ExptID9 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID9 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp9
+        Data['Stim'] = mat['Data'].Cell2.Stim9
+        Data['TraceMax'] = cols9
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID9 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp9
+        Data['Stim'] = mat['Data'].Cell2.Stim9
+        Data['TraceMax'] = cols9
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 10 and mat['Data'].Cell2.ExptID10 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp10
         Data['Stim'] = mat['Data'].Cell2.Stim10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 10 and mat['Data'].Cell2.ExptID10 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 10 and mat['Data'].Cell2.ExptID10 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 10 and mat['Data'].Cell2.ExptID10 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[0:21300]
-
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID10 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp10
+        Data['Stim'] = mat['Data'].Cell2.Stim10
+        Data['TraceMax'] = cols10
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID10 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp10
+        Data['Stim'] = mat['Data'].Cell2.Stim10
+        Data['TraceMax'] = cols10
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
+        
     if User_choices['ExptVal'] == 11 and mat['Data'].Cell2.ExptID10 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp11
         Data['Stim'] = mat['Data'].Cell2.Stim11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 11 and mat['Data'].Cell2.ExptID11 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 11 and mat['Data'].Cell2.ExptID11 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 11 and mat['Data'].Cell2.ExptID11 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID11 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp11
+        Data['Stim'] = mat['Data'].Cell2.Stim11
+        Data['TraceMax'] = cols11
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID11 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp11
+        Data['Stim'] = mat['Data'].Cell2.Stim11
+        Data['TraceMax'] = cols11
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 12 and mat['Data'].Cell2.ExptID12 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp12
         Data['Stim'] = mat['Data'].Cell2.Stim12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 12 and mat['Data'].Cell2.ExptID12 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 12 and mat['Data'].Cell2.ExptID12 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 12 and mat['Data'].Cell2.ExptID12 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID12 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp12
+        Data['Stim'] = mat['Data'].Cell2.Stim12
+        Data['TraceMax'] = cols12
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID12 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp12
+        Data['Stim'] = mat['Data'].Cell2.Stim12
+        Data['TraceMax'] = cols12
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 13 and mat['Data'].Cell2.ExptID13 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp13
         Data['Stim'] = mat['Data'].Cell2.Stim13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 13 and mat['Data'].Cell2.ExptID13 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 13 and mat['Data'].Cell2.ExptID13 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 13 and mat['Data'].Cell2.ExptID13 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID13 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp13
+        Data['Stim'] = mat['Data'].Cell2.Stim13
+        Data['TraceMax'] = cols13
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID13 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp13
+        Data['Stim'] = mat['Data'].Cell2.Stim13
+        Data['TraceMax'] = cols13
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 14 and mat['Data'].Cell2.ExptID14 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp14
         Data['Stim'] = mat['Data'].Cell2.Stim14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 14 and mat['Data'].Cell2.ExptID14 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 14 and mat['Data'].Cell2.ExptID14 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 14 and mat['Data'].Cell2.ExptID14 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID14 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp14
+        Data['Stim'] = mat['Data'].Cell2.Stim14
+        Data['TraceMax'] = cols14
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID14 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp14
+        Data['Stim'] = mat['Data'].Cell2.Stim14
+        Data['TraceMax'] = cols14
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 15 and mat['Data'].Cell2.ExptID15 == 'IV':
         Data['Raw'] = mat['Data'].Cell2.Exp15
         Data['Stim'] = mat['Data'].Cell2.Stim15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 15 and mat['Data'].Cell2.ExptID15 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 15 and mat['Data'].Cell2.ExptID15 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell2.Exp15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 15 and mat['Data'].Cell2.ExptID15 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell2.Exp15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID15 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell2.Exp15
+        Data['Stim'] = mat['Data'].Cell2.Stim15
+        Data['TraceMax'] = cols15
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell2.ExptID15 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell2.Exp15
+        Data['Stim'] = mat['Data'].Cell2.Stim15
+        Data['TraceMax'] = cols15
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
 if User_choices['CellVal'] == 3:
     if User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID1 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp1
         Data['Stim'] = mat['Data'].Cell3.Stim1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID1 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID1 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID1 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID1 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp1
+        Data['Stim'] = mat['Data'].Cell3.Stim1
+        Data['TraceMax'] = cols1
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID1 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp1
+        Data['Stim'] = mat['Data'].Cell3.Stim1
+        Data['TraceMax'] = cols1
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 2 and mat['Data'].Cell3.ExptID2 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp2
         Data['Stim'] = mat['Data'].Cell3.Stim2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 2 and mat['Data'].Cell3.ExptID2 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 2 and mat['Data'].Cell3.ExptID2 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 2 and mat['Data'].Cell3.ExptID2 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID2 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp2
+        Data['Stim'] = mat['Data'].Cell3.Stim2
+        Data['TraceMax'] = cols2
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID2 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp2
+        Data['Stim'] = mat['Data'].Cell3.Stim2
+        Data['TraceMax'] = cols2
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 3 and mat['Data'].Cell3.ExptID3 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp3
         Data['Stim'] = mat['Data'].Cell3.Stim3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 3 and mat['Data'].Cell3.ExptID3 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 3 and mat['Data'].Cell3.ExptID3 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 3 and mat['Data'].Cell3.ExptID3 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID3 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp3
+        Data['Stim'] = mat['Data'].Cell3.Stim3
+        Data['TraceMax'] = cols3
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID3 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp3
+        Data['Stim'] = mat['Data'].Cell3.Stim3
+        Data['TraceMax'] = cols3
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 4 and mat['Data'].Cell3.ExptID4 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp4
         Data['Stim'] = mat['Data'].Cell3.Stim4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 4 and mat['Data'].Cell3.ExptID4 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 4 and mat['Data'].Cell3.ExptID4 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 4 and mat['Data'].Cell3.ExptID4 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID4 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp4
+        Data['Stim'] = mat['Data'].Cell3.Stim4
+        Data['TraceMax'] = cols4
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID4 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp4
+        Data['Stim'] = mat['Data'].Cell3.Stim4
+        Data['TraceMax'] = cols4
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 5 and mat['Data'].Cell3.ExptID5 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp5
         Data['Stim'] = mat['Data'].Cell3.Stim5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 5 and mat['Data'].Cell3.ExptID5 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 5 and mat['Data'].Cell3.ExptID5 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 5 and mat['Data'].Cell3.ExptID5 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID5 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp5
+        Data['Stim'] = mat['Data'].Cell3.Stim5
+        Data['TraceMax'] = cols5
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID5 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp5
+        Data['Stim'] = mat['Data'].Cell3.Stim5
+        Data['TraceMax'] = cols5
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]        
         
     if User_choices['ExptVal'] == 6 and mat['Data'].Cell3.ExptID6 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp6
         Data['Stim'] = mat['Data'].Cell3.Stim6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 6 and mat['Data'].Cell3.ExptID6 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 6 and mat['Data'].Cell3.ExptID6 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 6 and mat['Data'].Cell3.ExptID6 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID6 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp6
+        Data['Stim'] = mat['Data'].Cell3.Stim6
+        Data['TraceMax'] = cols6
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID6 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp6
+        Data['Stim'] = mat['Data'].Cell3.Stim6
+        Data['TraceMax'] = cols6
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]        
         
     if User_choices['ExptVal'] == 7 and mat['Data'].Cell3.ExptID7 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp7
         Data['Stim'] = mat['Data'].Cell3.Stim7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 7 and mat['Data'].Cell3.ExptID7 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 7 and mat['Data'].Cell3.ExptID7 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 7 and mat['Data'].Cell3.ExptID7 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID7 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp7
+        Data['Stim'] = mat['Data'].Cell3.Stim7
+        Data['TraceMax'] = cols7
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID7 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp7
+        Data['Stim'] = mat['Data'].Cell3.Stim7
+        Data['TraceMax'] = cols7
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 8 and mat['Data'].Cell3.ExptID8 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp8
         Data['Stim'] = mat['Data'].Cell3.Stim8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 8 and mat['Data'].Cell3.ExptID8 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 8 and mat['Data'].Cell3.ExptID8 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 8 and mat['Data'].Cell3.ExptID8 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID8 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp8
+        Data['Stim'] = mat['Data'].Cell3.Stim8
+        Data['TraceMax'] = cols8
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID8 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp8
+        Data['Stim'] = mat['Data'].Cell3.Stim8
+        Data['TraceMax'] = cols8
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 9 and mat['Data'].Cell3.ExptID9 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp9
         Data['Stim'] = mat['Data'].Cell3.Stim9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 9 and mat['Data'].Cell3.ExptID9 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 9 and mat['Data'].Cell3.ExptID9 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 9 and mat['Data'].Cell3.ExptID9 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID9 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp9
+        Data['Stim'] = mat['Data'].Cell3.Stim9
+        Data['TraceMax'] = cols9
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID9 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp9
+        Data['Stim'] = mat['Data'].Cell3.Stim9
+        Data['TraceMax'] = cols9
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 10 and mat['Data'].Cell3.ExptID10 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp10
         Data['Stim'] = mat['Data'].Cell3.Stim10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 10 and mat['Data'].Cell3.ExptID10 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 10 and mat['Data'].Cell3.ExptID10 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 10 and mat['Data'].Cell3.ExptID10 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[0:21300]
-
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID10 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp10
+        Data['Stim'] = mat['Data'].Cell3.Stim10
+        Data['TraceMax'] = cols10
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID10 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp10
+        Data['Stim'] = mat['Data'].Cell3.Stim10
+        Data['TraceMax'] = cols10
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
+        
     if User_choices['ExptVal'] == 11 and mat['Data'].Cell3.ExptID10 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp11
         Data['Stim'] = mat['Data'].Cell3.Stim11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 11 and mat['Data'].Cell3.ExptID11 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 11 and mat['Data'].Cell3.ExptID11 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 11 and mat['Data'].Cell3.ExptID11 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID11 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp11
+        Data['Stim'] = mat['Data'].Cell3.Stim11
+        Data['TraceMax'] = cols11
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID11 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp11
+        Data['Stim'] = mat['Data'].Cell3.Stim11
+        Data['TraceMax'] = cols11
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 12 and mat['Data'].Cell3.ExptID12 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp12
         Data['Stim'] = mat['Data'].Cell3.Stim12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 12 and mat['Data'].Cell3.ExptID12 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 12 and mat['Data'].Cell3.ExptID12 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 12 and mat['Data'].Cell3.ExptID12 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID12 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp12
+        Data['Stim'] = mat['Data'].Cell3.Stim12
+        Data['TraceMax'] = cols12
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID12 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp12
+        Data['Stim'] = mat['Data'].Cell3.Stim12
+        Data['TraceMax'] = cols12
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 13 and mat['Data'].Cell3.ExptID13 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp13
         Data['Stim'] = mat['Data'].Cell3.Stim13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 13 and mat['Data'].Cell3.ExptID13 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 13 and mat['Data'].Cell3.ExptID13 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 13 and mat['Data'].Cell3.ExptID13 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID13 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp13
+        Data['Stim'] = mat['Data'].Cell3.Stim13
+        Data['TraceMax'] = cols13
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID13 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp13
+        Data['Stim'] = mat['Data'].Cell3.Stim13
+        Data['TraceMax'] = cols13
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 14 and mat['Data'].Cell3.ExptID14 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp14
         Data['Stim'] = mat['Data'].Cell3.Stim14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 14 and mat['Data'].Cell3.ExptID14 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 14 and mat['Data'].Cell3.ExptID14 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 14 and mat['Data'].Cell3.ExptID14 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID14 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp14
+        Data['Stim'] = mat['Data'].Cell3.Stim14
+        Data['TraceMax'] = cols14
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID14 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp14
+        Data['Stim'] = mat['Data'].Cell3.Stim14
+        Data['TraceMax'] = cols14
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 15 and mat['Data'].Cell3.ExptID15 == 'IV':
         Data['Raw'] = mat['Data'].Cell3.Exp15
         Data['Stim'] = mat['Data'].Cell3.Stim15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 15 and mat['Data'].Cell3.ExptID15 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 15 and mat['Data'].Cell3.ExptID15 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell3.Exp15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 15 and mat['Data'].Cell3.ExptID15 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell3.Exp15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID15 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell3.Exp15
+        Data['Stim'] = mat['Data'].Cell3.Stim15
+        Data['TraceMax'] = cols15
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell3.ExptID15 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell3.Exp15
+        Data['Stim'] = mat['Data'].Cell3.Stim15
+        Data['TraceMax'] = cols15
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
 if User_choices['CellVal'] == 4:
     if User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID1 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp1
         Data['Stim'] = mat['Data'].Cell4.Stim1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID1 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID1 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID1 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp1
         Data['TraceMax'] = cols1
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID1 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp1
+        Data['Stim'] = mat['Data'].Cell4.Stim1
+        Data['TraceMax'] = cols1
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID1 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp1
+        Data['Stim'] = mat['Data'].Cell4.Stim1
+        Data['TraceMax'] = cols1
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 2 and mat['Data'].Cell4.ExptID2 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp2
         Data['Stim'] = mat['Data'].Cell4.Stim2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 2 and mat['Data'].Cell4.ExptID2 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 2 and mat['Data'].Cell4.ExptID2 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 2 and mat['Data'].Cell4.ExptID2 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp2
         Data['TraceMax'] = cols2
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID2 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp2
+        Data['Stim'] = mat['Data'].Cell4.Stim2
+        Data['TraceMax'] = cols2
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID2 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp2
+        Data['Stim'] = mat['Data'].Cell4.Stim2
+        Data['TraceMax'] = cols2
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 3 and mat['Data'].Cell4.ExptID3 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp3
         Data['Stim'] = mat['Data'].Cell4.Stim3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 3 and mat['Data'].Cell4.ExptID3 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 3 and mat['Data'].Cell4.ExptID3 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 3 and mat['Data'].Cell4.ExptID3 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp3
         Data['TraceMax'] = cols3
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID3 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp3
+        Data['Stim'] = mat['Data'].Cell4.Stim3
+        Data['TraceMax'] = cols3
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID3 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp3
+        Data['Stim'] = mat['Data'].Cell4.Stim3
+        Data['TraceMax'] = cols3
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 4 and mat['Data'].Cell4.ExptID4 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp4
         Data['Stim'] = mat['Data'].Cell4.Stim4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 4 and mat['Data'].Cell4.ExptID4 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 4 and mat['Data'].Cell4.ExptID4 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 4 and mat['Data'].Cell4.ExptID4 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp4
         Data['TraceMax'] = cols4
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID4 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp4
+        Data['Stim'] = mat['Data'].Cell4.Stim4
+        Data['TraceMax'] = cols4
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID4 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp4
+        Data['Stim'] = mat['Data'].Cell4.Stim4
+        Data['TraceMax'] = cols4
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 5 and mat['Data'].Cell4.ExptID5 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp5
         Data['Stim'] = mat['Data'].Cell4.Stim5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 5 and mat['Data'].Cell4.ExptID5 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 5 and mat['Data'].Cell4.ExptID5 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 5 and mat['Data'].Cell4.ExptID5 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp5
         Data['TraceMax'] = cols5
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID5 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp5
+        Data['Stim'] = mat['Data'].Cell4.Stim5
+        Data['TraceMax'] = cols5
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID5 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp5
+        Data['Stim'] = mat['Data'].Cell4.Stim5
+        Data['TraceMax'] = cols5
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]        
         
     if User_choices['ExptVal'] == 6 and mat['Data'].Cell4.ExptID6 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp6
         Data['Stim'] = mat['Data'].Cell4.Stim6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 6 and mat['Data'].Cell4.ExptID6 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 6 and mat['Data'].Cell4.ExptID6 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 6 and mat['Data'].Cell4.ExptID6 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp6
         Data['TraceMax'] = cols6
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID6 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp6
+        Data['Stim'] = mat['Data'].Cell4.Stim6
+        Data['TraceMax'] = cols6
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID6 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp6
+        Data['Stim'] = mat['Data'].Cell4.Stim6
+        Data['TraceMax'] = cols6
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]        
         
     if User_choices['ExptVal'] == 7 and mat['Data'].Cell4.ExptID7 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp7
         Data['Stim'] = mat['Data'].Cell4.Stim7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 7 and mat['Data'].Cell4.ExptID7 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 7 and mat['Data'].Cell4.ExptID7 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 7 and mat['Data'].Cell4.ExptID7 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp7
         Data['TraceMax'] = cols7
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID7 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp7
+        Data['Stim'] = mat['Data'].Cell4.Stim7
+        Data['TraceMax'] = cols7
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID7 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp7
+        Data['Stim'] = mat['Data'].Cell4.Stim7
+        Data['TraceMax'] = cols7
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 8 and mat['Data'].Cell4.ExptID8 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp8
         Data['Stim'] = mat['Data'].Cell4.Stim8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 8 and mat['Data'].Cell4.ExptID8 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 8 and mat['Data'].Cell4.ExptID8 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 8 and mat['Data'].Cell4.ExptID8 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp8
         Data['TraceMax'] = cols8
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID8 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp8
+        Data['Stim'] = mat['Data'].Cell4.Stim8
+        Data['TraceMax'] = cols8
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID8 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp8
+        Data['Stim'] = mat['Data'].Cell4.Stim8
+        Data['TraceMax'] = cols8
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
     
     if User_choices['ExptVal'] == 9 and mat['Data'].Cell4.ExptID9 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp9
         Data['Stim'] = mat['Data'].Cell4.Stim9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 9 and mat['Data'].Cell4.ExptID9 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 9 and mat['Data'].Cell4.ExptID9 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 9 and mat['Data'].Cell4.ExptID9 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp9
         Data['TraceMax'] = cols9
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID9 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp9
+        Data['Stim'] = mat['Data'].Cell4.Stim9
+        Data['TraceMax'] = cols9
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID9 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp9
+        Data['Stim'] = mat['Data'].Cell4.Stim9
+        Data['TraceMax'] = cols9
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 10 and mat['Data'].Cell4.ExptID10 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp10
         Data['Stim'] = mat['Data'].Cell4.Stim10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 10 and mat['Data'].Cell4.ExptID10 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 10 and mat['Data'].Cell4.ExptID10 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 10 and mat['Data'].Cell4.ExptID10 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp10
         Data['TraceMax'] = cols10
-        Data['Time'] = mat['Data'].Time[0:21300]
-
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID10 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp10
+        Data['Stim'] = mat['Data'].Cell4.Stim10
+        Data['TraceMax'] = cols10
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID10 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp10
+        Data['Stim'] = mat['Data'].Cell4.Stim10
+        Data['TraceMax'] = cols10
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
+        
     if User_choices['ExptVal'] == 11 and mat['Data'].Cell4.ExptID10 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp11
         Data['Stim'] = mat['Data'].Cell4.Stim11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 11 and mat['Data'].Cell4.ExptID11 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 11 and mat['Data'].Cell4.ExptID11 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 11 and mat['Data'].Cell4.ExptID11 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp11
         Data['TraceMax'] = cols11
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID11 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp11
+        Data['Stim'] = mat['Data'].Cell4.Stim11
+        Data['TraceMax'] = cols11
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID11 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp11
+        Data['Stim'] = mat['Data'].Cell4.Stim11
+        Data['TraceMax'] = cols11
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 12 and mat['Data'].Cell4.ExptID12 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp12
         Data['Stim'] = mat['Data'].Cell4.Stim12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 12 and mat['Data'].Cell4.ExptID12 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 12 and mat['Data'].Cell4.ExptID12 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 12 and mat['Data'].Cell4.ExptID12 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp12
         Data['TraceMax'] = cols12
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID12 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp12
+        Data['Stim'] = mat['Data'].Cell4.Stim12
+        Data['TraceMax'] = cols12
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID12 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp12
+        Data['Stim'] = mat['Data'].Cell4.Stim12
+        Data['TraceMax'] = cols12
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 13 and mat['Data'].Cell4.ExptID13 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp13
         Data['Stim'] = mat['Data'].Cell4.Stim13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 13 and mat['Data'].Cell4.ExptID13 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 13 and mat['Data'].Cell4.ExptID13 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 13 and mat['Data'].Cell4.ExptID13 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp13
         Data['TraceMax'] = cols13
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID13 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp13
+        Data['Stim'] = mat['Data'].Cell4.Stim13
+        Data['TraceMax'] = cols13
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID13 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp13
+        Data['Stim'] = mat['Data'].Cell4.Stim13
+        Data['TraceMax'] = cols13
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
         
     if User_choices['ExptVal'] == 14 and mat['Data'].Cell4.ExptID14 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp14
         Data['Stim'] = mat['Data'].Cell4.Stim14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 14 and mat['Data'].Cell4.ExptID14 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 14 and mat['Data'].Cell4.ExptID14 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 14 and mat['Data'].Cell4.ExptID14 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp14
         Data['TraceMax'] = cols14
-        Data['Time'] = mat['Data'].Time[0:21300]
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID14 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp14
+        Data['Stim'] = mat['Data'].Cell4.Stim14
+        Data['TraceMax'] = cols14
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID14 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp14
+        Data['Stim'] = mat['Data'].Cell4.Stim14
+        Data['TraceMax'] = cols14
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]
 
     if User_choices['ExptVal'] == 15 and mat['Data'].Cell4.ExptID15 == 'IV':
         Data['Raw'] = mat['Data'].Cell4.Exp15
         Data['Stim'] = mat['Data'].Cell4.Stim15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[0:18000]
-    elif User_choices['ExptVal'] == 15 and mat['Data'].Cell4.ExptID15 == '2.5ms LED CC':
+        Data['Time'] = mat['Data'].Time[0:Data['Raw'].shape[0]]
+    elif User_choices['ExptVal'] == 15 and mat['Data'].Cell4.ExptID15 == 'SP 2.5ms LED CC':
         Data['RawSP'] = mat['Data'].Cell4.Exp15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[:]
+        Data['Time'] = mat['Data'].Time[0:Data['RawSP'].shape[0]]
     elif User_choices['ExptVal'] == 15 and mat['Data'].Cell4.ExptID15 == 'TBS induction':
         Data['RawTBS'] = mat['Data'].Cell4.Exp15
         Data['TraceMax'] = cols15
-        Data['Time'] = mat['Data'].Time[0:21300]    
+        Data['Time'] = mat['Data'].Time[0:Data['RawTBS'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID15 == 'PPR CC':
+        Data['RawPPRCC'] = mat['Data'].Cell4.Exp15
+        Data['Stim'] = mat['Data'].Cell4.Stim15
+        Data['TraceMax'] = cols15
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRCC'].shape[0]]
+    elif User_choices['ExptVal'] == 1 and mat['Data'].Cell4.ExptID15 == 'PPR VC':
+        Data['RawPPRVC'] = mat['Data'].Cell4.Exp15
+        Data['Stim'] = mat['Data'].Cell4.Stim15
+        Data['TraceMax'] = cols15
+        Data['Time'] = mat['Data'].Time[0:Data['RawPPRVC'].shape[0]]    
 
+#Calculates IV curve parameters including spikecount, RMP, Rin, Freq, etc.
 if 'Raw' in Data:
     x = 0
     for i in Data['Raw'][x:Data['TraceMax']:1]:
@@ -1953,8 +2554,8 @@ if 'Raw' in Data:
         if traces_results[0]['Spikecount'] >= 2:
             traces_results = efel.getFeatureValues(traces,[
                 'AP_begin_voltage','voltage_base','AP_amplitude','AP_rise_time',
-                'Spikecount','min_AHP_values','AP_begin_indices','peak_time', 'ISI_values',
-                'spike_width2','voltage_base'])
+                'Spikecount','min_AHP_values','AP_begin_indices','peak_time','spike_width2',
+                'voltage_base'])
 
             #Error if operands of AP_begin_voltage and min_AHP_values are not equal
             #This code automatically removes the erroneous values (usually the last value(s)) and makes the number of values equal for further calculations
@@ -1964,6 +2565,12 @@ if 'Raw' in Data:
                 elif len(traces_results[0]['AP_begin_voltage']) > len(traces_results[0]['min_AHP_values']):
                     traces_results[0]['AP_begin_voltage'] = np.delete(traces_results[0]['AP_begin_voltage'],-1)
                     traces_results[0]['AP_begin_indices'] = np.delete(traces_results[0]['AP_begin_indices'],-1)
+    
+            #Calculate ISI values based on AP_begin_indices and multiply each value by the sampling point (0.05ms)
+            if traces_results[0]['Spikecount'] == 2:
+                traces_results[0]['ISI_values'] = float(traces_results[0]['AP_begin_indices'][-1] - traces_results[0]['AP_begin_indices'][0]) * 0.05
+            elif traces_results[0]['Spikecount'] > 2:    
+                traces_results[0]['ISI_values'] = np.diff(traces_results[0]['AP_begin_indices']) * 0.05
     
             #Calculate initial ISI value and insert this value into the 0 position of ISI values
             FirstISI = traces_results[0]['peak_time'][1] - traces_results[0]['peak_time'][0]
@@ -2006,13 +2613,14 @@ if 'Raw' in Data:
             
             x += 1
 
+#Calculates PSP response to single pulse stimulation (either a single trace or average of all traces)
 elif 'RawSP' in Data:
-    SPChoice = int(input('If you want to analyze a specific trace, please input the trace number (from 0 to ***{}***). If not, input 100: '.format(Data['TraceMax']-1)))
-    if SPChoice < 100:
-        if SPChoice > Data['TraceMax']:
+    User_choices['SPChoice'] = int(input('If you want to analyze a specific trace, please input the trace number (from 0 to ***{}***). If not, input 100: '.format(Data['TraceMax']-1)))
+    if User_choices['SPChoice'] < 100:
+        if User_choices['SPChoice'] > Data['TraceMax']:
             print('|n' + 'Please input a trace number within the 0 to {} trace range, A-A-RON'.format(Data['TraceMax']-1))
         else:
-            single_trace = Data['RawSP'][:,SPChoice]
+            single_trace = Data['RawSP'][:,User_choices['SPChoice']]
             ST_base = np.mean(single_trace[39400:39800])
             ST_psp = max(single_trace[40000:40800])
             ST_Final_PSP = ST_psp - ST_base
@@ -2027,7 +2635,7 @@ elif 'RawSP' in Data:
             
             print('This PSP is ' + str(ST_Final_PSP) + ' mV.')
                 
-    elif SPChoice == 100:
+    elif User_choices['SPChoice'] == 100:
         mean_trace = np.mean(Data['RawSP'], axis = 1)
         trace_base = np.mean(mean_trace[39400:39800])
         trace_psp = max(mean_trace[40000:40800])
@@ -2043,13 +2651,37 @@ elif 'RawSP' in Data:
         
         print('The mean PSP is ' + str(mean_psp) + ' mV.')
 
+#Plots a graph of the cell's response to the TBS protocol
 elif 'RawTBS' in Data:
     plt.plot(Data['Time'],Data['RawTBS'])
     plt.xlabel('Time (in ms)')
     plt.ylabel('Voltage (in mV)')
     plt.show()
 
-
+#Calculates the PPR Ratio for the amplitude of pulse 2-5 to the amplitude of pulse 1
+elif 'RawPPRCC' in Data:
+    PPR = list()
+    trace_base = np.mean(Data['RawPPRCC'][0:4000], axis = 1)
+    PPR['P1'] = np.mean(Data['RawPPRCC'][4001:4550], axis = 1)
+    PPR['P2'] = np.mean(Data['RawPPRCC'][5051:5600], axis = 1)
+    PPR['P3'] = np.mean(Data['RawPPRCC'][6101:6650], axis = 1)
+    PPR['P4'] = np.mean(Data['RawPPRCC'][7151:7700], axis = 1)
+    PPR['P5'] = np.mean(Data['RawPPRCC'][8201:8750], axis = 1)
+    PPR['P1Max'] = max(PPR['P1']) - trace_base
+    PPR['P2Max'] = max(PPR['P2']) - trace_base
+    PPR['P3Max'] = max(PPR['P3']) - trace_base
+    PPR['P4Max'] = max(PPR['P4']) - trace_base
+    PPR['P5Max'] = max(PPR['P5']) - trace_base
+    PPR['P1R'] = PPR['P1Max'] / PPR['P1Max']
+    PPR['P2R'] = PPR['P2Max'] / PPR['P1Max']
+    PPR['P3R'] = PPR['P3Max'] / PPR['P3Max']
+    PPR['P4R'] = PPR['P4Max'] / PPR['P4Max']
+    PPR['P5R'] = PPR['P5Max'] / PPR['P5Max']
+    
+    plt.plot(Data['Time'],Data['RawPPRCC'])
+    plt.xlabel('Time (in ms)')
+    plt.ylabel('Voltage (in mV)')
+    plt.show()
 
 #Output data into CSVs when appropriate
 if 'Raw' in Data: 
@@ -2059,18 +2691,25 @@ if 'Raw' in Data:
         writer1.writerows(Results)
         IV.close()
         
-elif 'RawSP' in Data and SPChoice < 100:
-    with open(str(file) + '_Single_PSP_Trace' + str(SPChoice) + '.csv','w') as SP:
+elif 'RawSP' in Data and User_choices['SPChoice'] < 100:
+    with open(str(file) + '_Single_PSP_Trace' + str(User_choices['SPChoice']) + '.csv','w') as SP:
         fieldnames = ['Single_PSP']
         writer = DictWriter(SP,fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(Results)
         SP.close()
 
-elif 'RawSP' in Data and SPChoice == 100:
+elif 'RawSP' in Data and User_choices['SPChoice'] == 100:
     with open(str(file) + '_Mean_PSP' + '.csv','w') as SP:
         fieldnames = ['Mean_PSP']
         writer1 = DictWriter(SP,fieldnames=fieldnames)
         writer1.writeheader()
         writer1.writerows(Results)
         SP.close()
+
+elif 'RawPPRCC' in Data:
+    with open(str(file) + '_PPRCC' + '.csv','w') as PPR:
+        writer1 = DictWriter(PPR,('P1R','P2R','P3R','P4R','P5R'))
+        writer1.writeheader()
+        writer1.writerows(PPR)
+        PPR.close()
