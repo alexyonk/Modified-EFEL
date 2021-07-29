@@ -130,7 +130,7 @@ for i in SortedData[IterVar:TraceNum:1]:
     trace_results['AHP'] = traces_results[0]['min_AHP_values'] - traces_results[0]['AP_begin_voltage']
     
     #Calculate Duration of Spiking
-    if traces_results[0]['AP_begin_indices'][-1] > 25000:
+    if traces_results[0]['AP_begin_indices'][-1] > 25126:
         Begin_indices_clip = traces_results[0]['AP_begin_indices'][0:int(traces_results[0]['Spikecount'])-1]
     else:
         Begin_indices_clip = traces_results[0]['AP_begin_indices'][0:int(traces_results[0]['Spikecount'])]
