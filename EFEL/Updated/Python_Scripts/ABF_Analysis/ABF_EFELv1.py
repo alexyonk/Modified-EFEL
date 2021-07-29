@@ -1,6 +1,6 @@
 #                    EFEL for ABF Formatted Files
 #                   *Created by AY on 12/28/2020*
-#                   *Last Updated on 5/24/2021*
+#                   *Last Updated on 7/28/2021*
 #     *For any issues or bugs, please contact alex.yonk2@gmail.com*
 
 
@@ -21,6 +21,7 @@ efel.setDoubleSetting('interp_step',0.05) #Must be set to the sampling rate (20,
 efel.setDoubleSetting('voltage_base_start_perc',0.1) #Used for RMP calculation
 efel.setDoubleSetting('voltage_base_end_perc',0.8) #Used for RMP calculation
 efel.setDerivativeThreshold(15) #Normally set to 15
+efel.setIntSetting('strict_stiminterval',True)
 
 #Import ABF file and assign the corresponding data to Time and RawData variables
 File = pyabf.ABF(file_path)
@@ -102,6 +103,12 @@ for i in SortedData[IterVar:TraceNum:1]:
         elif len(traces_results[0]['AP_begin_voltage']) > len(traces_results[0]['min_AHP_values']):
             traces_results[0]['AP_begin_voltage'] = np.delete(traces_results[0]['AP_begin_voltage'],-1)
             traces_results[0]['AP_begin_indices'] = np.delete(traces_results[0]['AP_begin_indices'],-1)
+    
+    #Further error occurs if the spikecount doesn't mean the AP_begin_voltages
+    if len(traces_results[0]['Spikecount']) != len(traces_results[0]['AP_begin_voltage']):
+        Diff2 = int(traces_results[0]['Spikecount']) - len(traces_results[0]['AP_begin_voltage'])
+        traces_results[0]['peak_voltage'] = traces_results[0]['peak_voltage'][0:traces_results[0]['peak_voltage'].size-Diff2]
+        traces_results[0]['peak_time'] = traces_results[0]['peak_time'][0:traces_results[0]['peak_time'].size-Diff2]
             
     #Save First Threshold AP parameters
     AP_Latency = Time[traces_results[0]['AP_begin_indices'][0]] - 256.3
@@ -123,8 +130,12 @@ for i in SortedData[IterVar:TraceNum:1]:
     trace_results['AHP'] = traces_results[0]['min_AHP_values'] - traces_results[0]['AP_begin_voltage']
     
     #Calculate Duration of Spiking
-    trace_results['SpikeDur'] = Time[traces_results[0]['AP_begin_indices'][-1]] - Time[traces_results[0]['AP_begin_indices'][0]]
-                
+    if traces_results[0]['AP_begin_indices'][-1] > 25000:
+        Begin_indices_clip = traces_results[0]['AP_begin_indices'][0:int(traces_results[0]['Spikecount'])-1]
+    else:
+        Begin_indices_clip = traces_results[0]['AP_begin_indices'][0:int(traces_results[0]['Spikecount'])]
+    trace_results['SpikeDur'] = Time[Begin_indices_clip[-1]] - Time[Begin_indices_clip[0]]
+            
     #Calculate Frequency Parameters (Mean Instantaneous, Max, and Frequency Adaptation)
     #If there is only one frequency value, calculate MaxFreq and FreqAdapt is not applicable
     #If there is more than one frequency value, calculate both parameters appropriately
@@ -178,7 +189,10 @@ for i in SortedData[IterVar:TraceNum:1]:
             'AHP_Adaptation': trace_results['AHPAdapt'], 'Thresh_Adapt_Freq': trace_results['Thresh_Adapt_Freq']}
     
     #Graph to plot related information
+    #Added section that plots red plus signs above denoted APs
+    peak_time = traces_results[0]['peak_time'][0:len(traces_results[0]['peak_voltage'])]
     plt.plot(Time,SortedData[:,IterVar])
+    plt.scatter(peak_time,traces_results[0]['peak_voltage'] + 20,c='r',marker = '+')
     plt.show()
 
     #Append all pertinent information into a list to be written into a CSV
