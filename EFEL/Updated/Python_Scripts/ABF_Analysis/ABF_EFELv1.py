@@ -22,6 +22,8 @@ efel.setDoubleSetting('voltage_base_start_perc',0.1) #Used for RMP calculation
 efel.setDoubleSetting('voltage_base_end_perc',0.8) #Used for RMP calculation
 efel.setDerivativeThreshold(15) #Normally set to 15
 efel.setIntSetting('strict_stiminterval',True)
+efel.setDoubleSetting('rise_start_perc',0.1)
+efel.setDoubleSetting('rise_end_perc',0.9)
 
 #Import ABF file and assign the corresponding data to Time and RawData variables
 File = pyabf.ABF(file_path)
@@ -66,7 +68,6 @@ for i in SortedData[IterVar:TraceNum:1]:
     #If Spikecount is equal to 0, append a 0 to AllAverages variable, and move onto next trace
     if traces_results[0]['Spikecount'] == 0:
         print('No spikes in trace ' + str(IterVar) + '.')
-        AllAverages.append(0)
         IterVar += 1
         continue
     
