@@ -1,6 +1,6 @@
 #                    EFEL for ABF Formatted Files
 #                   *Created by AY on 12/28/2020*
-#                   *Last Updated on 7/28/2021*
+#                   *Last Updated on 1/21/2022*
 #     *For any issues or bugs, please contact alex.yonk2@gmail.com*
 
 
@@ -11,6 +11,11 @@ import pyabf
 from matplotlib import pyplot as plt
 from csv import DictWriter
 from tkinter import filedialog
+from os import chdir, getcwd
+
+#Allows user to set working directory
+wd = filedialog.askdirectory()
+chdir(wd)
 
 #Opens a dialog box allowing the user to select the file and removes the extension from the file name
 file_path = filedialog.askopenfilename()
@@ -24,6 +29,7 @@ efel.setDerivativeThreshold(15) #Normally set to 15
 efel.setIntSetting('strict_stiminterval',True)
 efel.setDoubleSetting('rise_start_perc',0.1)
 efel.setDoubleSetting('rise_end_perc',0.9)
+efel.setThreshold(0)
 
 #Import ABF file and assign the corresponding data to Time and RawData variables
 File = pyabf.ABF(file_path)
@@ -201,7 +207,8 @@ for i in SortedData[IterVar:TraceNum:1]:
     AllAverages.append(averages)
     
     IterVar += 1
-    
+ 
+ 
 #Two CSV output files for averaged trace data and First_Threshold_AP data
 with open(str(file) + '_FirstAP' + '.csv','w') as tAP, open(str(file) + '_Averages' + '.csv','w') as Avg:
     writer1 = DictWriter(tAP,('AP_Latency','AP_Threshold','AP_Amplitude','AP_Rise','AP_Half-Height_Width','AHP_Amplitude'))

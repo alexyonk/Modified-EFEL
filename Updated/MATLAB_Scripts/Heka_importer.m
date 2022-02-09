@@ -15,6 +15,9 @@ Data = struct();
 
 %Determine number of cells
 Data.CellNum = max(all.RecTable{:,1});
+if strcmp(all.RecTable{1,2}, 'Exp-2')
+    Data.CellNum = Data.CellNum + 1;
+end
 
 %Determine sampling frequency for each experiment type
 timerow = 2;

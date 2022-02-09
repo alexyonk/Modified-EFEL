@@ -1,6 +1,6 @@
-#                   EFEL for ABF Formatted Files TEST FILE
+#                EFEL for ABF Formatted Files TEST FILE
 #                   *Created by AY on 12/28/2020*
-#                   *Last Updated on 2/4/2021*
+#                   *Last Updated on 1/21/2022*
 #     *For any issues or bugs, please contact alex.yonk2@gmail.com*
 
 #The following libraries must be installed before being imported!
@@ -9,6 +9,7 @@ import efel
 import numpy as np
 import pyabf
 from tkinter import filedialog
+from matplotlib import pyplot as plt
 
 #Opens a dialog box allowing the user to select the file and removes the extension from the file name
 file_path = filedialog.askopenfilename()
@@ -129,7 +130,7 @@ for i in SortedData[IterVar:TraceNum:1]:
         trace_results['ISI_values'] = np.insert(traces_results[0]['ISI_values'],0,FirstISI)
 
         #Calculate AHP amplitude values
-        trace_results['AHP'] = traces_results[0]['min_AHP_values'] - traces_results[0]['AP_begin_voltage']
+        #trace_results['AHP'] = traces_results[0]['min_AHP_values'] - traces_results[0]['AP_begin_voltage']
     
         #Calculate Duration of Spiking
         trace_results['SpikeDur'] = Time[traces_results[0]['AP_begin_indices'][-1]] - Time[traces_results[0]['AP_begin_indices'][0]]
@@ -145,9 +146,10 @@ for i in SortedData[IterVar:TraceNum:1]:
         trace_results['PeakAdapt'] = traces_results[0]['AP_amplitude'][-1] / traces_results[0]['AP_amplitude'][0]
     
         #Calculate AHP Parameters (mean AHP Amplitude and AHP Peak Adaptation)
-        trace_results['MeanAHPAmp'] = np.mean(trace_results['AHP'])
-        trace_results['AHPAdapt'] = trace_results['AHP'][-1] / trace_results['AHP'][0]
+        #trace_results['MeanAHPAmp'] = np.mean(trace_results['AHP'])
+        #trace_results['AHPAdapt'] = trace_results['AHP'][-1] / trace_results['AHP'][0]
         
+        '''
         averages = {'AP #': int(traces_results[0]['Spikecount']), 'Duration_of_Spiking': trace_results['SpikeDur'],
             'Mean_Instantaneous_Frequency':trace_results['MeanInstFreq'],'Max_Frequency': trace_results['MaxFreq'],
             'Frequency_Adaptation': trace_results['FreqAdapt'], 'Mean_AP_Amplitude': trace_results['MeanAPAmp'],
@@ -155,5 +157,8 @@ for i in SortedData[IterVar:TraceNum:1]:
             'AHP_Adaptation': trace_results['AHPAdapt']}
         
         AllAverages.append(averages)
+    '''
+    plt.plot(Time,SortedData[:,IterVar])
+    plt.show()
     
     IterVar += 1
