@@ -20,7 +20,7 @@ Output file is a .csv file containing either IV parameters (EFEL) or PSP amplitu
 
 Example .mat file has been provided.
 
-# ABF_EFELv1 Script (PYTHON)
+# ABF_EFELv2 Script (PYTHON)
 This script imports, organizes, analyzes, plots, and saves data from a .abf file
 
 Import file is a .abf file
@@ -28,5 +28,7 @@ Import file is a .abf file
 Output file are two .csv files containing threshold AP parameters (EFEL) and IV averaged parameters (EFEL)
 
 Example .abf file has been provided.
+
+v2 includes while loops to recognize/correct errors created by the EFEL script
 
 ***Note: ABF importer code can be found here (https://pypi.org/project/pyabf/).
