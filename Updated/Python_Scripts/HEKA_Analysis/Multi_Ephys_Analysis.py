@@ -112,7 +112,7 @@ SelectCell = AllData['Data']['Cell' + str(User_choices['CellVal'])]
 print('There are *** ' + str(int(SelectCell['Expts'])) + ' *** experiments for this cell.' + '\n')
 for i in range(SelectCell['Expts']):
     Cols = np.shape([SelectCell['Exp' + str(i + 1)][1]])
-    print('Experiment ' + str(i + 1) + ' is a(n) ' + str(SelectCell['ExptID' + str(i + 1)]) + ' cotains *** ' + str(Cols[1]) + ' *** traces.')
+    print('Experiment ' + str(i + 1) + ' is a(n) ' + str(SelectCell['ExptID' + str(i + 1)]) + ' contains *** ' + str(Cols[1]) + ' *** traces.')
     
 User_choices['ExptVal'] = int(input('Which experiment would you like to analyze?:'))
 
@@ -332,13 +332,12 @@ elif 'SP CC' in Cell['ExptID']:
     #and runs a for loop to nan out selected traces
     User_choices['SP NaN'] = int(input('If traces need to be NaNed, input 1. Otherwise, input 0: '))
     if User_choices['SP NaN'] == 0:
-        print('Continuning to SP Analysis')
+        print('Continuing to SP Analysis')
     if User_choices['SP NaN'] == 1:
         User_choices['SP_NaN_Trace'] = int(input('Please input the number of traces to be NaNed: '))
         for i in range(User_choices['SP_NaN_Trace']):
-            User_choices['SP_Traces'] = int(input('Please input the trace to be Naned (from 0 to ' + str(Cell['TraceMax'])))
+            User_choices['SP_Traces'] = int(input('Please input the trace to be Naned from 0 to ' + str(Cell['TraceMax'][1]) + ' : '))
             Cell['Data'][:,User_choices['SP_Traces']] = np.nan
-        print('All traces have been NaNed')      
     
     #Set up lists to append data
     SPAmp = list()
@@ -392,13 +391,12 @@ elif 'PPR CC' in Cell['ExptID']:
     #Same NaNing method as SP
     User_choices['PPR NaN'] = int(input('If traces need to be NaNed, input 1. Otherwise, input 0: '))
     if User_choices['PPR NaN'] == 0:
-        print('Continuning to SP Analysis')
+        print('Continuing to SP Analysis')
     if User_choices['PPR NaN'] == 1:
         User_choices['PPR_NaN_Trace'] = int(input('Please input the number of traces to be NaNed: '))
         for i in range(User_choices['PPR_NaN_Trace']):
-            User_choices['PPR_Traces'] = int(input('Please input the trace to be Naned (from 0 to ' + str(Cell['TraceMax'])))
+            User_choices['PPR_Traces'] = int(input('Please input the trace to be Naned from 0 to ' + str(Cell['TraceMax'][1]) + ' : '))
             Cell['Data'][:,User_choices['PPR_Traces']] = np.nan
-        print('All traces have been NaNed') 
 
     PPRBase = list()
     PPRAmp = list()
@@ -489,13 +487,12 @@ elif 'Train CC' in Cell['ExptID']:
     #Same NaNing method as SP
     User_choices['Train NaN'] = int(input('If traces need to be NaNed, input 1. Otherwise, input 0: '))
     if User_choices['Train NaN'] == 0:
-        print('Continuning to SP Analysis')
+        print('Continuing to SP Analysis')
     if User_choices['Train NaN'] == 1:
         User_choices['Train_NaN_Trace'] = int(input('Please input the number of traces to be NaNed: '))
         for i in range(User_choices['Train_NaN_Trace']):
-            User_choices['Train_Traces'] = int(input('Please input the trace to be Naned (from 0 to ' + str(Cell['TraceMax'])))
+            User_choices['Train_Traces'] = int(input('Please input the trace to be Naned from 0 to ' + str(Cell['TraceMax'][1]) + ' : '))
             Cell['Data'][:,User_choices['Train_Traces']] = np.nan
-        print('All traces have been NaNed') 
     
     #Set up lists that will save certain values
     Ratio = pd.DataFrame()
@@ -572,13 +569,12 @@ elif 'SP E/I' in Cell['ExptID']:
     #Same NaNing method as SP
     User_choices['EI NaN'] = int(input('If traces need to be NaNed, input 1. Otherwise, input 0: '))
     if User_choices['EI NaN'] == 0:
-        print('Continuning to SP E/I Analysis')
+        print('Continuing to SP E/I Analysis')
     if User_choices['EI NaN'] == 1:
         User_choices['EI_NaN_Trace'] = int(input('Please input the number of traces to be NaNed: '))
         for i in range(User_choices['EI_NaN_Trace']):
-            User_choices['EI_Traces'] = int(input('Please input the trace to be Naned (from 0 to ' + str(Cell['TraceMax'])))
+            User_choices['EI_Traces'] = int(input('Please input the trace to be Naned from 0 to ' + str(Cell['TraceMax'][1]) + ' : '))
             Cell['Data'][:,User_choices['EI_Traces']] = np.nan
-        print('All traces have been NaNed') 
         
     #Set up list to append data zero trace data for average trace calculation
     EI_zeroed = list()

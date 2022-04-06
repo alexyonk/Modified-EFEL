@@ -1,6 +1,6 @@
 #                    EFEL for ABF Formatted Files
 #                   *Created by AY on 12/28/2020*
-#                   *Last Updated on 02/09/2022*
+#                   *Last Updated on 04/06/2022*
 #     *For any issues or bugs, please contact alex.yonk2@gmail.com*
 
 
@@ -59,7 +59,7 @@ IterVar = StartingColumn
 #Global variables are created outside the loop to store each trace as a dictionary in a list
 AllAverages = []
 trace_results = {}
-First_Threshold_AP = list()
+First_Threshold_AP = [list()]
 SpikeCount = 0
 
 #Loop that cycles through each trace, extracts the pertinent information, computes other parameters, 
@@ -73,16 +73,22 @@ for i in SortedData[IterVar:TraceNum:1]:
     traces = [trace1]
     traces_results = efel.getFeatureValues(traces,['Spikecount'])
     
+    #Included this if statement as some traces contain AP at one depol step, none the next, and one or more on the one after
+    #This statement continues the iterating variable until the sweep is done
+    if traces_results[0]['Spikecount'] == 0:
+        IterVar += 1
+        continue
+    
     #If Spikecount is one, calculate Threshold_AP parameters, append info into First_AP dictionary, and continue
     if traces_results[0]['Spikecount'] == 1:
         traces_results = efel.getFeatureValues(traces,['Spikecount','AP_rise_time','min_AHP_values','AP_begin_voltage','AP_amplitude',
                                                        'AP_begin_indices','spike_half_width','AP_rise_time'])
         
         AP_Latency = Time[traces_results[0]['AP_begin_indices'][0]] - 256.3
-        traces_results['AHP'] = traces_results[0]['min_AHP_values'][0] - traces_results[0]['AP_begin_voltage'][0]
+        traces_results[0]['AHP'] = traces_results[0]['min_AHP_values'][0] - traces_results[0]['AP_begin_voltage'][0]
         First_AP = {'AP_Latency': AP_Latency, 'AP_Threshold': traces_results[0]['AP_begin_voltage'][0],
                         'AP_Amplitude': traces_results[0]['AP_amplitude'][0],'AP_Rise': traces_results[0]['AP_rise_time'][0],
-                        'AP_Half-Height_Width': float(traces_results[0]['spike_half_width']),'AHP_Amplitude': trace_results['AHP'][0]}
+                        'AP_Half-Height_Width': float(traces_results[0]['spike_half_width']),'AHP_Amplitude': traces_results[0]['AHP']}
         First_Threshold_AP.append(First_AP)
         IterVar += 1
         continue
@@ -235,3 +241,4 @@ tAP.close()
 Avg.close()
 
 print('Success! Outputs saved as CSVs' + '\n')
+print('If plots are not present in console window, check under the "Plots" tab')
